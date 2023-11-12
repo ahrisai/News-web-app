@@ -1,0 +1,19 @@
+.newsBanner{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap:12px
+}
+
+.title{
+font-size: 18px;
+}
+
+.date{
+font-size: 12px;
+color: #444;
+}
+
+.img{
+
+}
