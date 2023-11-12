@@ -2,8 +2,8 @@ import {createSlice,createAsyncThunk,PayloadAction} from '@reduxjs/toolkit'
 import { INewsItem } from '../types/NewsTypes'
 import axios from 'axios'
 
-const BASE_URL = 'https://api.currentsapi.services/v1/latest-news'
-const apiKey='IQsBPaf0Gqodj9Q-2pY4YY5l13S2lu7t7v0j_yjss5zUHgUP'
+const BASE_URL = 'https://newsapi.org/v2/everything'
+const apiKey='bb5e1db197a947459a70903712043bbd'
 
 
 export const fetchNews = createAsyncThunk(
@@ -11,13 +11,17 @@ export const fetchNews = createAsyncThunk(
     async (_,{rejectWithValue}) => {
     const response= await axios.get(BASE_URL,{
             params:{
-                apiKey:apiKey
+                apiKey:apiKey,
+                q:'anything',
+                pageSize:30,
+                from:'2023-11-11',
+                to:'2023-12-10T00:00:00'
             }
         })
-        .then(res=>
+        .then(res=>{
+            console.log(res.data)
             
-            
-            res.data.news
+          return  res.data.articles}
         )
         .catch(e=>{
            return  rejectWithValue(e.message)

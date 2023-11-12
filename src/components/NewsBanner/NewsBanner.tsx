@@ -7,14 +7,19 @@ interface NewsBannerProps{
     newsItem:INewsItem
 }
 const NewsBanner:FC<NewsBannerProps> = ({newsItem}) => {
+  
   return (
-    <div className={NewsBannerStyles.newsBanner}>
-        <ImageWrapper image={newsItem.image}/>
-        <h3 className={NewsBannerStyles.title}>{newsItem.title}</h3>
-        <p className={NewsBannerStyles.date}>
-            {formatTimeAgo(newsItem.published)  } by {newsItem.author}
-        </p>
-    </div>
+    newsItem
+    ?<div className={NewsBannerStyles.newsBanner}>
+    <ImageWrapper image={newsItem.urlToImage}/>
+    <h3 className={NewsBannerStyles.title}>{newsItem.title}</h3>
+    <p className={NewsBannerStyles.date}>
+        {formatTimeAgo(newsItem.publishedAt)  } by {newsItem.author}
+    </p>
+    
+</div>
+    :''
+    
   )
 }
 

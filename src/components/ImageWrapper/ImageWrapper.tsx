@@ -1,18 +1,17 @@
 import React, { FC } from 'react'
 import ImageStyles from './ImageWrapper.module.css'
 interface ImageWrapperProps{
-    image:string
+    image:string,
+    imgStyles?:string
 }
-const ImageWrapper:FC<ImageWrapperProps> = ({image}) => {
+const ImageWrapper:FC<ImageWrapperProps> = ({image,imgStyles}) => {
 
 
   return (
-    <div className={ImageStyles.wrapper}>
-        {image!='None'
-        ?<img src={image} alt="news" className={ImageStyles.image}/>
-        :null
-        }
-    </div>
+ image
+ ?<img src={image} alt="news" className={imgStyles?imgStyles:ImageStyles.image}/>
+ :<div className={ImageStyles.wrapper}></div>
+ 
   )
 }
 

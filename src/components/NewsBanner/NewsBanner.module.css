@@ -1,8 +1,22 @@
 .newsBanner{
+    
     display: flex;
     width: 100%;
     flex-direction: column;
-    gap:12px
+    justify-content: center;
+    align-items: center;
+    gap:12px;
+    margin-bottom: 50px;
+    
+}
+
+.newsBanner::after{
+    display: block;
+    content: '';
+    height: 2px;
+    width: 100%;
+    margin-top: 10px;
+    background: linear-gradient(68.7deg, rgb(29, 173, 235) 13.2%, rgb(137, 149, 250) 29.8%, rgb(229, 109, 212) 48.9%, rgb(255, 68, 128) 68.2%, rgb(255, 94, 0) 86.4%);
 }
 
 .title{
@@ -14,6 +28,3 @@ font-size: 12px;
 color: #444;
 }
 
-.img{
-
-}

@@ -7,7 +7,7 @@ import { useAppDispatch } from "../../redux";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux";
 import { fetchNews } from "../../redux/newsSlice";
-import NewsBannersList from "../../components/NewsBannersList/NewsBannersList";
+import NewsList from "../../components/NewsBannersList/NewsList";
 import Loader from "../../components/Loader/Loader";
 const Main = () => {
   const news = useSelector((state: RootState) => state.userReducer.news);
@@ -18,11 +18,16 @@ const Main = () => {
   useEffect(() => {
     dispatch(fetchNews());
   }, []);
-  console.log(news);
+  
   return (
     <main>
       <div className={MainStyles.container}>
-        {status==='pending' ? <Loader /> : <NewsBannersList news={news} />}
+        {status==='pending' 
+        ? <Loader />
+         : <div>
+         <NewsBanner newsItem={news[0]}/>
+         <NewsList news={news.slice(1)} />
+          </div>}
       </div>
     </main>
   );

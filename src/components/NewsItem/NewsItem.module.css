@@ -1,0 +1,32 @@
+.newsItem{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    
+    width: 900px;
+    overflow: hidden;
+}
+
+.textContainer{
+    padding: 0 10px;
+    width: 70%;
+    
+}
+
+.newsItemImg{
+    display: block;
+     width: 300px;   
+     height: 150px;  
+     border-right: 2px solid #000;
+
+     
+}
+
+.itemBorder{
+    overflow: hidden;
+
+    
+    border-radius: 15px;
+    background: radial-gradient(circle at 10% 20%, rgb(142, 224, 251) 0%, rgb(255, 121, 225) 100.7%);
+}

@@ -1,5 +1,6 @@
 .LdsRoller {
-    display: inline-block;
+    display: block;
+    margin: 0 auto;
     position: relative;
     width: 80px;
     height: 80px;
