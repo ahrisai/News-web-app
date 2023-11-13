@@ -8,7 +8,7 @@ const ImageWrapper:FC<ImageWrapperProps> = ({image,imgStyles}) => {
 
 
   return (
- image
+ image!=='None'
  ?<img src={image} alt="news" className={imgStyles!==undefined?imgStyles:ImageStyles.image}/>
  :<div className={ImageStyles.wrapper}></div>
  

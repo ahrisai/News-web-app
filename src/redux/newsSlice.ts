@@ -4,7 +4,7 @@ import axios from 'axios'
 const BASE_URL= import.meta.env.VITE_NEWS_BASE_API_URL
 const apiKey= import.meta.env.VITE_NEWS_API_KEY
 
-console.log(import.meta.env.VITE_NEWS_BASE_API_URL)
+
 
 
 export const fetchNews = createAsyncThunk(
@@ -13,23 +13,15 @@ export const fetchNews = createAsyncThunk(
     const response= await axios.get(BASE_URL,{
             params:{
                 apiKey:apiKey,
-                q:'anything',
-                pageSize:30,
-                from:'2023-30-12',
-                to:'2023-30-10T00:00:00'
+               
             },
-            headers: {
-                "Access-Control-Allow-Credentials": "true",
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Methods": "GET,OPTIONS,PATCH,DELETE,POST,PUT",
-                "Access-Control-Allow-Headers": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
-              }
+           
             
         })
         .then(res=>{
             console.log(res.data)
             
-          return  res.data.articles}
+          return  res.data.news}
         )
         .catch(e=>{
            return  rejectWithValue(e.message)

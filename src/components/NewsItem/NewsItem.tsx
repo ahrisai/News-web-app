@@ -10,11 +10,11 @@ const NewsItem:FC<NewsItemProps> = ({newsItem}) => {
     return (
         <div className={newsItemStyles.itemBorder}>
                  <div className={newsItemStyles.newsItem}>
-          <ImageWrapper imgStyles={newsItemStyles.newsItemImg} image={newsItem.urlToImage}/>
+          <ImageWrapper imgStyles={newsItemStyles.newsItemImg} image={newsItem.image}/>
           <div className={newsItemStyles.textContainer}>
           <h3 className={newsItemStyles.title}>{newsItem.title}</h3>
           <p className={newsItemStyles.date}>
-              {formatTimeAgo(newsItem.publishedAt)  } by {newsItem.author}
+              {formatTimeAgo(newsItem.published)  } by {newsItem.author}
           </p>
           </div>
           

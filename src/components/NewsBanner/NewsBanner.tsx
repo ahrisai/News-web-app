@@ -11,10 +11,10 @@ const NewsBanner:FC<NewsBannerProps> = ({newsItem}) => {
   return (
     newsItem
     ?<div className={NewsBannerStyles.newsBanner}>
-    <ImageWrapper  image={newsItem.urlToImage}/>
+    <ImageWrapper  image={newsItem.image}/>
     <h3 className={NewsBannerStyles.title}>{newsItem.title}</h3>
     <p className={NewsBannerStyles.date}>
-        {formatTimeAgo(newsItem.publishedAt)  } by {newsItem.author}
+        {formatTimeAgo(newsItem.published)  } by {newsItem.author}
     </p>
     
 </div>

@@ -1,9 +1,9 @@
 export interface INewsItem{
     
     title:string,
-    publishedAt:string,
+    published:string,
     author:string,
-    urlToImage:string,
+    image:string,
     description:string,
     category:string
 }
