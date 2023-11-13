@@ -8,7 +8,12 @@
     gap:12px;
     margin-bottom: 50px;
     
+
 }
+
+
+
+
 
 .newsBanner::after{
     display: block;

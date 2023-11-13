@@ -1,7 +1,6 @@
-import React,{FC} from 'react'
+import {FC} from 'react'
 import ListStyles from './NewsBannersList.module.css'
 import { INewsItem } from '../../types/NewsTypes'
-import NewsBanner from '../NewsBanner/NewsBanner'
 import NewsItem from '../NewsItem/NewsItem'
 interface NewsBannersListProps{
     news:INewsItem[]

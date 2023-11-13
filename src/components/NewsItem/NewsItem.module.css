@@ -6,6 +6,12 @@
     
     width: 900px;
     overflow: hidden;
+    transition: transform 0.5s ease;
+
+}
+
+.newsItem:hover{
+transform: scale(1.05);
 }
 
 .textContainer{
@@ -18,15 +24,21 @@
     display: block;
      width: 300px;   
      height: 150px;  
-     border-right: 2px solid #000;
 
      
 }
 
 .itemBorder{
     overflow: hidden;
-
-    
     border-radius: 15px;
     background: radial-gradient(circle at 10% 20%, rgb(142, 224, 251) 0%, rgb(255, 121, 225) 100.7%);
+    background-size: 180%;
+    transition: background-size .1s linear;
+
+    
+}
+
+.itemBorder:hover{
+    background-size: 100%;
+    cursor: pointer;
 }

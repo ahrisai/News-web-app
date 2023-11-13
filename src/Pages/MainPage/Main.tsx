@@ -1,7 +1,5 @@
-import React from "react";
 import MainStyles from "./Main.module.css";
 import NewsBanner from "../../components/NewsBanner/NewsBanner";
-import { INewsItem } from "../../types/NewsTypes";
 import { useEffect } from "react";
 import { useAppDispatch } from "../../redux";
 import { useSelector } from "react-redux";

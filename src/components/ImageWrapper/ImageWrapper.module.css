@@ -1,16 +1,21 @@
 .image{
    max-width: 50vw;
-   border: 2px solid rgb(71, 71, 71);
+   border: 1px solid rgb(0, 68, 132);
     border-radius: 7px;
+   transition: transform 0.3s ease-in-out;
 }
 
 .wrapper{
    width: 300px;
    height: 150px;
-   border-right: 2px solid black;
+   
    background-image: url('../../Images/pngwing.com.png');
    background-size: 90px;
    background-repeat: no-repeat;
    background-position: center;
-background-color: aliceblue;
+   background-color: aliceblue;
+}
+.image:hover{
+   transform: scale(1.03);
+   cursor: pointer;
 }

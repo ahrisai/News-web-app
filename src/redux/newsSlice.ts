@@ -14,8 +14,8 @@ export const fetchNews = createAsyncThunk(
                 apiKey:apiKey,
                 q:'anything',
                 pageSize:30,
-                from:'2023-11-11',
-                to:'2023-12-10T00:00:00'
+                from:'2023-30-12',
+                to:'2023-30-10T00:00:00'
             }
         })
         .then(res=>{
