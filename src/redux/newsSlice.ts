@@ -2,8 +2,10 @@ import {createSlice,createAsyncThunk,PayloadAction} from '@reduxjs/toolkit'
 import { INewsItem } from '../types/NewsTypes'
 import axios from 'axios'
 
-const BASE_URL = 'https://newsapi.org/v2/everything'
-const apiKey='bb5e1db197a947459a70903712043bbd'
+const BASE_URL= import.meta.env.VITE_NEWS_BASE_API_URL
+const apiKey= import.meta.env.VITE_NEWS_API_KEY
+
+console.log(import.meta.env.VITE_NEWS_BASE_API_URL)
 
 
 export const fetchNews = createAsyncThunk(
