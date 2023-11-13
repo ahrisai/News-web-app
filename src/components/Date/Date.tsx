@@ -1,4 +1,4 @@
-import React, { useEffect, useState,FC } from 'react'
+import { useEffect, useState,FC } from 'react'
 import { formatDate } from '../../utility/formatDate'
 
 const DateTime:FC= () => {
@@ -20,7 +20,7 @@ const DateTime:FC= () => {
     
   return (
     <div>
-        <p style={{fontSize:14}}>Today is {formatDate(new Date())} </p>
+        <p style={{fontSize:14}}>Today is {formatDate(date)} </p>
     </div>
   )
 }

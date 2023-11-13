@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import  { FC } from 'react'
 import newsItemStyles from './NewsItem.module.css'
 import { INewsItem } from '../../types/NewsTypes'
 import { formatTimeAgo } from '../../utility/formatTimeAgo'
