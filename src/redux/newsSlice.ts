@@ -10,7 +10,7 @@ const apiKey= import.meta.env.VITE_NEWS_API_KEY
 export const fetchNews = createAsyncThunk(
     'newsReducer/fetchNews',
     async (_,{rejectWithValue}) => {
-    const response= await axios.get(BASE_URL,{
+    const response= await axios.get(BASE_URL+'latest-news',{
             params:{
                 apiKey:apiKey,
                
