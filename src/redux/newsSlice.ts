@@ -1,6 +1,7 @@
 import { INewsItem } from './../types/NewsTypes';
 import {createSlice,createAsyncThunk,PayloadAction} from '@reduxjs/toolkit'
 import axios from 'axios'
+import { IPageQueryParams} from '../types/QueryTypes';
 const BASE_URL= import.meta.env.VITE_NEWS_BASE_API_URL
 const apiKey= import.meta.env.VITE_NEWS_API_KEY
 
@@ -9,15 +10,19 @@ interface FetchedNews {
 }
 
 
+
 export const fetchNews = createAsyncThunk(
     'newsReducer/fetchNews',
-    async (_,{rejectWithValue}) => {
-    const response= await axios.get<FetchedNews>(BASE_URL+'latest-news',{
+    async (pageParams:IPageQueryParams={page_number:1,page_size:10},{rejectWithValue}) => {
+    
+        
+
+    const response= await axios.get<FetchedNews>(BASE_URL+'search',{
             params:{
                 
                 apiKey:apiKey,
-                
-                
+                page_size:pageParams.page_size,
+                page_number:pageParams.page_number
             },
            
             
@@ -27,6 +32,7 @@ export const fetchNews = createAsyncThunk(
             const news=res.data.news
             const newsWithoutArxiv=news.filter(item=>!item.url?.includes('arxiv'))
             return newsWithoutArxiv
+           
         }
         )
         .catch(e=>{
