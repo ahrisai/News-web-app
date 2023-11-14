@@ -1,27 +1,33 @@
+import { INewsItem } from './../types/NewsTypes';
 import {createSlice,createAsyncThunk,PayloadAction} from '@reduxjs/toolkit'
-import { INewsItem } from '../types/NewsTypes'
 import axios from 'axios'
 const BASE_URL= import.meta.env.VITE_NEWS_BASE_API_URL
 const apiKey= import.meta.env.VITE_NEWS_API_KEY
 
-
+interface FetchedNews {
+    news:INewsItem[]
+}
 
 
 export const fetchNews = createAsyncThunk(
     'newsReducer/fetchNews',
     async (_,{rejectWithValue}) => {
-    const response= await axios.get(BASE_URL+'latest-news',{
+    const response= await axios.get<FetchedNews>(BASE_URL+'latest-news',{
             params:{
+                
                 apiKey:apiKey,
-               
+                
+                
             },
            
             
         })
         .then(res=>{
             console.log(res.data)
-            
-          return  res.data.news}
+            const news=res.data.news
+            const newsWithoutArxiv=news.filter(item=>!item.url?.includes('arxiv'))
+            return newsWithoutArxiv
+        }
         )
         .catch(e=>{
            return  rejectWithValue(e.message)

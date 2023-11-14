@@ -12,7 +12,7 @@ export const formatTimeAgo = (dateString:string) => {
 
     }
     if(secondPast<86400){
-        return `${Math.round(secondPast/36000)}h ago`
+        return `${Math.round(secondPast/3600)}h ago`
     }
     if(secondPast>86400){
         const day:number=Math.round(secondPast/86400)

@@ -5,5 +5,6 @@ export interface INewsItem{
     author:string,
     image:string,
     description:string,
-    category:string
+    category:string,
+    url?:string
 }
