@@ -7,14 +7,19 @@ import { RootState } from "../../redux";
 import { fetchNews } from "../../redux/newsSlice";
 import NewsList from "../../components/NewsBannersList/NewsList";
 import Skeleton from "../../components/Skeleton/Skeleton";
+import Pagination from "../../components/Pagination/Pagination";
+import { IPageQueryParams } from "../../types/QueryTypes";
 const Main = () => {
   const news = useSelector((state: RootState) => state.userReducer.news);
   const status = useSelector((state: RootState) => state.userReducer.status);
 
   const dispatch = useAppDispatch();
-
+  const defaultQuearyParams={
+    page_number:1,
+    page_size:10
+  } as IPageQueryParams
   useEffect(() => {
-    dispatch(fetchNews());
+    dispatch(fetchNews(defaultQuearyParams));
   }, []);
   
   return (
@@ -29,6 +34,8 @@ const Main = () => {
          : <div>
          <NewsBanner newsItem={news[0]}/>
          <NewsList news={news.slice(1)} />
+          <Pagination totalPages={news.length}/>
+
           </div>}
       </div>
     </main>
