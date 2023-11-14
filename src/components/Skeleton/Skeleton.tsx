@@ -6,10 +6,7 @@ interface SkeletonProps{
     type:'banner'|'item'
 }
 
-<<<<<<< HEAD
 const Skeleton:FC<SkeletonProps> = ({count}) => {
-=======
->>>>>>> 59a3c1e14fb054544441222ff5c0a5d0ad34ceb0
     
   return (
     <>
