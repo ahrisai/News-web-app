@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux";
 import { fetchNews } from "../../redux/newsSlice";
 import NewsList from "../../components/NewsBannersList/NewsList";
-import Loader from "../../components/Loader/Loader";
+import Skeleton from "../../components/Skeleton/Skeleton";
 const Main = () => {
   const news = useSelector((state: RootState) => state.userReducer.news);
   const status = useSelector((state: RootState) => state.userReducer.status);
@@ -21,7 +21,11 @@ const Main = () => {
     <main>
       <div className={MainStyles.container}>
         {status==='pending' 
-        ? <Loader />
+        ? <div>
+          <Skeleton count={1} type="banner" />
+          <Skeleton count={4} type="item" />
+
+        </div>
          : <div>
          <NewsBanner newsItem={news[0]}/>
          <NewsList news={news.slice(1)} />
