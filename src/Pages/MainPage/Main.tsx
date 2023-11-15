@@ -1,6 +1,6 @@
 import MainStyles from "./Main.module.css";
 import NewsBanner from "../../components/NewsBanner/NewsBanner";
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 import { useAppDispatch } from "../../redux";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux";
@@ -12,16 +12,34 @@ import { IPageQueryParams } from "../../types/QueryTypes";
 const Main = () => {
   const news = useSelector((state: RootState) => state.userReducer.news);
   const status = useSelector((state: RootState) => state.userReducer.status);
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   const dispatch = useAppDispatch();
   const defaultQuearyParams={
-    page_number:1,
+    page_number:currentPage,
     page_size:10
   } as IPageQueryParams
   useEffect(() => {
-    dispatch(fetchNews(defaultQuearyParams));
-  }, []);
-  
+
+    dispatch(fetchNews(defaultQuearyParams))
+    
+    
+  }, [currentPage])
+  const choosePage = (
+    page_number: number,
+    e?: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    if (e) {
+      if (e.currentTarget.innerText === "<" && page_number > 1) {
+        setCurrentPage(page_number - 1);
+      }
+      if (e.currentTarget.innerText === ">" && page_number < 10) {
+        setCurrentPage(page_number + 1);
+      }
+    } else {
+      setCurrentPage(page_number);
+    }
+  };
   return (
     <main>
       <div className={MainStyles.container}>
@@ -34,7 +52,7 @@ const Main = () => {
          : <div>
          <NewsBanner newsItem={news[0]}/>
          <NewsList news={news.slice(1)} />
-          <Pagination totalPages={news.length}/>
+        <Pagination currentPage={currentPage} choosePage={choosePage} totalPages={news.length}/>
 
           </div>}
       </div>
