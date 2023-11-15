@@ -9,7 +9,7 @@ const NewsList:FC<NewsBannersListProps> = ({news}) => {
   return (
     <div className={ListStyles.list}>
         {
-            news.map(item=><NewsItem key={item.title} newsItem={item}/>)
+            news.map(item=><NewsItem key={item.id} newsItem={item}/>)
         }
     </div>
   )

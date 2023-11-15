@@ -22,22 +22,19 @@ export const fetchNews = createAsyncThunk(
                 
                 apiKey:apiKey,
                 page_size:pageParams.page_size,
-                page_number:pageParams.page_number
+                page_number:pageParams.page_number,
+                domain_not:'arxiv.org'
             },
            
             
         })
-        .then(res=>{
-            console.log(res.data)
-            const news=res.data.news
-            const newsWithoutArxiv=news.filter(item=>!item.url?.includes('arxiv'))
-            return newsWithoutArxiv
-           
-        }
+        .then(res=>res.data.news
+            
         )
         .catch(e=>{
            return  rejectWithValue(e.message)
         })
+        console.log(response)
         return response
     }
 )
@@ -78,5 +75,4 @@ const NewsSlice=createSlice({
     }
 })
 
-// export const { setTodos,changeCompleted } = todoSlice.actions;
 export default NewsSlice.reducer;
