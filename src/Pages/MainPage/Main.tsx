@@ -27,15 +27,19 @@ const Main = () => {
   }, [currentPage])
   const choosePage = (
     page_number: number,
+    lastPage?:number,
     e?: React.MouseEvent<HTMLButtonElement>
   ) => {
     if (e) {
       if (e.currentTarget.innerText === "<" && page_number > 1) {
         setCurrentPage(page_number - 1);
       }
-      if (e.currentTarget.innerText === ">" && page_number < 10) {
-        setCurrentPage(page_number + 1);
+      if(lastPage){
+        if (e.currentTarget.innerText === ">" && page_number < lastPage) {
+          setCurrentPage(page_number + 1);
+        }
       }
+     
     } else {
       setCurrentPage(page_number);
     }
@@ -47,13 +51,14 @@ const Main = () => {
         ? <div>
           <Skeleton count={1} type="banner" />
           <Skeleton count={4} type="item" />
-
         </div>
          : <div>
          <NewsBanner newsItem={news[0]}/>
-         <NewsList news={news.slice(1)} />
-        <Pagination currentPage={currentPage} choosePage={choosePage} totalPages={news.length}/>
+         <Pagination currentPage={currentPage} choosePage={choosePage} />
 
+         <NewsList news={news.slice(1)} />
+         <Pagination currentPage={currentPage} choosePage={choosePage} />
+        
           </div>}
       </div>
     </main>
