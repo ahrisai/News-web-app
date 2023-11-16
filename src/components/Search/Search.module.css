@@ -1,0 +1,29 @@
+.searchField{
+    display: block;
+    width: 60%;
+    border: 2px solid rgb(87, 164, 173);
+    border-radius: 3px;
+    height: 35px;
+    font-size: 20px;
+    padding: 2px 5px;
+    position: relative;
+}
+
+.searchField:focus{
+    outline: 0
+
+}
+
+
+
+.searchField::after{
+    display: block;
+    content: ' ';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1000px;
+    background-color: #333;
+    background: url('../../Images/loop.png');
+    background-size: contain;
+}

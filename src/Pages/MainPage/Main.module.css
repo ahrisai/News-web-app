@@ -7,3 +7,10 @@
     width: 100%;
     padding:24px;
   }
+
+.newsFilters{
+    display: flex;
+    justify-content: center;
+    column-gap: 70px;
+    align-items: center;
+}
