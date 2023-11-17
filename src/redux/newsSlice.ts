@@ -1,5 +1,5 @@
 import { INewsItem } from './../types/NewsTypes';
-import {createSlice,createAsyncThunk,PayloadAction, current} from '@reduxjs/toolkit'
+import {createSlice,createAsyncThunk,PayloadAction} from '@reduxjs/toolkit'
 import axios from 'axios'
 import { IPageQueryParams} from '../types/QueryTypes';
 const BASE_URL= import.meta.env.VITE_NEWS_BASE_API_URL

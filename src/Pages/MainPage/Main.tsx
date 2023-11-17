@@ -4,13 +4,10 @@ import { useEffect, useState } from "react";
 import { useAppDispatch } from "../../redux";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux";
-import { fetchCategories, fetchNews } from "../../redux/newsSlice";
+import { fetchCategories} from "../../redux/newsSlice";
 import NewsList from "../../components/NewsBannersList/NewsList";
 import Skeleton from "../../components/Skeleton/Skeleton";
 import Pagination from "../../components/Pagination/Pagination";
-import { IPageQueryParams } from "../../types/QueryTypes";
-import FilterBar from "../../components/FilterBar/FilterBar";
-import Search from "../../components/Search/Search";
 import SearchForm from "../../components/SearchForm/SearchForm";
 
 const Main = () => {
@@ -20,19 +17,13 @@ const Main = () => {
 
   const dispatch = useAppDispatch();
 
-  const defaultQuearyParams = {
-    page_number: currentPage,
-    
-
-  } as IPageQueryParams;
+ 
 
   useEffect(() => {
     dispatch(fetchCategories());
 }, [])
 
-  // useEffect(() => {
-  //   dispatch(fetchNews(defaultQuearyParams));
-  // }, []);
+  
 
   const choosePage = (
     page_number: number,

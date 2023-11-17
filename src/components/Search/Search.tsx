@@ -1,9 +1,6 @@
-import {useState,useEffect,FC} from 'react'
+import {FC} from 'react'
 import searchStyles from './Search.module.css'
-import { useSelector } from 'react-redux'
-import { RootState } from '../../redux'
-import { useDebounce } from '../../hooks/useDebounce'
-import { useForm } from 'react-hook-form'
+
 interface SearchProps{
   keywords:string,
   setKeywords:(keyword:string)=>void
@@ -12,6 +9,7 @@ interface SearchProps{
 
 
 const Search:FC<SearchProps> = ({keywords,setKeywords}) => {
+  
   return (
     <div className={searchStyles.searchField}>
       <input className={searchStyles.searchInput} value={keywords} onChange={(e)=>setKeywords(e.target.value as string)} type="text" placeholder='search...'/>
