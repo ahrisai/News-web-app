@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import newsSlice from "./newsSlice";  
 export const store = configureStore({
     reducer:{
-        userReducer:newsSlice
+        newsReducer:newsSlice
     }
 })
 
