@@ -15,6 +15,8 @@ export const fetchNews = createAsyncThunk(
     'newsReducer/fetchNews',
     async (pageParams:IPageQueryParams|undefined={page_number:1,page_size:10},{rejectWithValue}) => {
     
+
+        
         
 
     const response= await axios.get<FetchedNews>(BASE_URL+'search',{
@@ -23,7 +25,8 @@ export const fetchNews = createAsyncThunk(
                 apiKey:apiKey,
                 page_size:pageParams.page_size,
                 page_number:pageParams.page_number,
-                categories:pageParams?.categories,
+                category:pageParams?.categories?.join(','),
+                keywords:pageParams?.keywords,
                 domain_not:'arxiv.org'
             },
            
@@ -95,18 +98,7 @@ const NewsSlice=createSlice({
     name:'newsReducer',
     initialState,
     reducers:{
-        // const chooseCategories = (categories:string[]) => {
-        //     const lastAddedCategory=categories[categories.length-1]
-        //     if(lastAddedCategory==='All'){
-        //       setCurrentCategories(['All'])
-        //     }
-        //     else if(lastAddedCategory!=='All')
-        //     setCurrentCategories(categories.filter(category=>category!=='All'))  
-        //   };
-        
-        //   const removeCategory = (removableCategory:string) => {
-        //       setCurrentCategories(currentCategories.filter(category=>category!==removableCategory))
-        //   }
+      
         addCategory(state,action:PayloadAction<ActionCategory>){
             const lastAddedCategory=action.payload.categories[action.payload.categories.length-1]
             if(lastAddedCategory==='All'){

@@ -11,6 +11,7 @@ import Pagination from "../../components/Pagination/Pagination";
 import { IPageQueryParams } from "../../types/QueryTypes";
 import FilterBar from "../../components/FilterBar/FilterBar";
 import Search from "../../components/Search/Search";
+import SearchForm from "../../components/SearchForm/SearchForm";
 
 const Main = () => {
   const news = useSelector((state: RootState) => state.newsReducer.news);
@@ -29,9 +30,9 @@ const Main = () => {
     dispatch(fetchCategories());
 }, [])
 
-  useEffect(() => {
-    dispatch(fetchNews(defaultQuearyParams));
-  }, [currentPage]);
+  // useEffect(() => {
+  //   dispatch(fetchNews(defaultQuearyParams));
+  // }, []);
 
   const choosePage = (
     page_number: number,
@@ -56,27 +57,22 @@ const Main = () => {
   return (
     <main>
       <div className={MainStyles.container}>
-        {status === "pending" ? (
+       
           <div>
-            <Skeleton count={1} type="banner" />
-            <Skeleton count={4} type="item" />
-          </div>
-        ) : (
-          <div>
-            <NewsBanner newsItem={news[0]} />
-            <div className={MainStyles.newsFilters}>
-              <Search/>
-              <FilterBar/>
-            </div>
+            {status === "pending"
+            ?            <Skeleton count={1} type="banner" />
+            :            <NewsBanner newsItem={news[0]} />
+            }
+            <SearchForm currentPage={currentPage}/>
             <Pagination currentPage={currentPage} choosePage={choosePage} />
-            
-              <NewsList news={news.slice(1)} />
-              
-            
 
+              {status === "pending"
+            ?<Skeleton count={4} type="item" />
+            :<NewsList news={news.slice(1)} />
+          }
             <Pagination currentPage={currentPage} choosePage={choosePage} />
           </div>
-        )}
+      
       </div>
     </main>
   );
