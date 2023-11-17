@@ -1,22 +1,31 @@
 .image{
    
-   max-width: 400px;
+   display: block;
+     max-width: 300px;   
+     max-height: 150px;  
+    border-radius: 10px;
    border: 1px solid rgb(0, 68, 132);
-    border-radius: 7px;
+    border-radius: 30px;
    transition: transform 0.3s ease-in-out;
 }
 
 .wrapper{
    width: 300px;
    height: 150px;
-   
-   background-image: url('../../Images/pngwing.com.png');
+   background-image: url('../../img/pngwing.com.png');
    background-size: 90px;
    background-repeat: no-repeat;
    background-position: center;
    background-color: aliceblue;
+   border: 1px solid rgb(0, 68, 132);
+   transition: transform 0.3s ease-in-out;
+
+   border-radius: 7px;
 }
-.image:hover{
+.image:hover,
+.wrapper:hover
+{
    transform: scale(1.03);
    cursor: pointer;
 }
+

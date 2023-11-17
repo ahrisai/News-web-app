@@ -3,22 +3,33 @@ import { INewsItem } from '../../types/NewsTypes'
 import { formatTimeAgo } from '../../utility/formatTimeAgo'
 import NewsBannerStyles from './NewsBanner.module.css'
 import ImageWrapper from '../ImageWrapper/ImageWrapper'
+import Skeleton from '../Skeleton/Skeleton'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../redux'
 interface NewsBannerProps{
     newsItem:INewsItem
 }
 const NewsBanner:FC<NewsBannerProps> = ({newsItem}) => {
-  
+  const status =useSelector((state:RootState)=>state.newsReducer.newsStatus)
   return (
+    status==='pending'
+    ?<Skeleton count={1} type={'banner'}/>
+    :
     newsItem
-    ?<div className={NewsBannerStyles.newsBanner}>
-    <ImageWrapper  image={newsItem.image}/>
-    <h3 className={NewsBannerStyles.title}>{newsItem.title}</h3>
-    <p className={NewsBannerStyles.date}>
-        {formatTimeAgo(newsItem.published)  } by {newsItem.author}
-    </p>
+      ?<div className={NewsBannerStyles.newsBanner}>
+      <ImageWrapper imgStyles={NewsBannerStyles.bannerImage}  image={newsItem.image}/>
+      <h3 className={NewsBannerStyles.title}>{newsItem.title}</h3>
+      <p className={NewsBannerStyles.date}>
+          {formatTimeAgo(newsItem.published)  } by {newsItem.author}
+      </p>
+    </div>
+      :<div className={NewsBannerStyles.newsBanner}>
+      <ImageWrapper  image={'../../../src/img/sadFace.jpg'}/>
+      </div>
+
     
-</div>
-    :''
+    
+    
     
   )
 }

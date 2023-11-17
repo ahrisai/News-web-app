@@ -29,7 +29,7 @@
     transform: translateY(-50%);
     width: 25px;
     height: 25px;
-    background: url('../../Images/loop.png');
+    background: url('../../img/loop.png');
     background-size: contain;
     cursor: pointer;
 }

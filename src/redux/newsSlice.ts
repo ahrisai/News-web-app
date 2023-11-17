@@ -25,7 +25,7 @@ export const fetchNews = createAsyncThunk(
                 apiKey:apiKey,
                 page_size:pageParams.page_size,
                 page_number:pageParams.page_number,
-                category:pageParams?.categories?.join(','),
+                // category:pageParams?.categories?.join(','),
                 keywords:pageParams?.keywords,
                 domain_not:'arxiv.org'
             },
@@ -74,7 +74,8 @@ interface INewsState{
     news:INewsItem[],
     categories:string[],
     currentCategories:string[],
-    status:'pending'|'rejected'|'fulfilled'|'idle'
+    newsStatus:'pending'|'rejected'|'fulfilled'|'idle',
+    categoriesStatus:'pending'|'rejected'|'fulfilled'|'idle',
     error:string|null
 }
 
@@ -82,7 +83,8 @@ const initialState={
     news:[],
     categories:[],
     currentCategories:['All'],
-    status:'idle',
+    newsStatus:'idle',
+    categoriesStatus:'idle',
     error:null
 } as INewsState
 
@@ -118,27 +120,27 @@ const NewsSlice=createSlice({
     },
     extraReducers:{
         [fetchNews.pending.type]:(state)=>{
-            state.status='pending'
+            state.newsStatus='pending'
         },
         [fetchNews.fulfilled.type]:(state,action:PayloadAction<INewsItem[]>)=>{
-            state.status='fulfilled'
+            state.newsStatus='fulfilled'
             
             state.news=action.payload
         },
         [fetchNews.rejected.type]:(state,action:PayloadAction<string>)=>{
-            state.status='rejected'
+            state.newsStatus='rejected'
             state.error=action.payload
         },
         [fetchCategories.pending.type]:(state)=>{
-            state.status='pending'
+            state.categoriesStatus='pending'
         },
         [fetchCategories.fulfilled.type]:(state,action:PayloadAction<string[]>)=>{
-            state.status='fulfilled'
+            state.categoriesStatus='fulfilled'
             
             state.categories=action.payload
         },
         [fetchCategories.rejected.type]:(state,action:PayloadAction<string>)=>{
-            state.status='rejected'
+            state.categoriesStatus='rejected'
             state.error=action.payload
         },
     }
