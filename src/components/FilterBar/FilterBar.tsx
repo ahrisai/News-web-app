@@ -1,10 +1,8 @@
-import { useState } from 'react';
 import filterBarStyles from './FilterBar.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux';
 import { Select, MenuItem, InputLabel, FormControl } from '@mui/material';
-import { removeCategory,addCategory, ActionCategory } from '../../redux/newsSlice';
-import { useAppDispatch } from '../../redux';
+import { removeCategory,addCategory } from '../../redux/newsSlice';
 const FilterBar = () => {
   const categories = useSelector((state: RootState) => state.newsReducer.categories);
   const currentCategories = useSelector((state:RootState)=>state.newsReducer.currentCategories)
