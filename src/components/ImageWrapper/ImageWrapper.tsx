@@ -1,11 +1,12 @@
 import { FC } from 'react'
 import ImageStyles from './ImageWrapper.module.css'
+
+
 interface ImageWrapperProps{
     image:string,
     imgStyles?:string
 }
 const ImageWrapper:FC<ImageWrapperProps> = ({image,imgStyles}) => {
-
 
   return (
  image!=='None'

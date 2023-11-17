@@ -1,20 +1,3 @@
-.FilterBar{
-    width: 300px;
-    
-    background: radial-gradient(circle at 10% 20%, rgb(142, 224, 251) 0%, rgb(255, 121, 225) 100.7%);
-    background-size: 180%;
-    border-radius: 10px;
-    
-}
-
-.formControl{
-    background: radial-gradient(circle at 10% 20%, rgb(142, 224, 251) 0%, rgb(255, 121, 225) 100.7%);
-    
-    width: 100%;
-    height: 55px;
-    border-radius: 4px;
-}
-
 .categoryList{
     display: flex;
     flex-wrap: wrap;

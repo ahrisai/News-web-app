@@ -6,13 +6,11 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux";
 import { fetchCategories} from "../../redux/newsSlice";
 import NewsList from "../../components/NewsBannersList/NewsList";
-import Skeleton from "../../components/Skeleton/Skeleton";
 import Pagination from "../../components/Pagination/Pagination";
 import SearchForm from "../../components/SearchForm/SearchForm";
 
 const Main = () => {
   const news = useSelector((state: RootState) => state.newsReducer.news);
-  const status = useSelector((state: RootState) => state.newsReducer.status);
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const dispatch = useAppDispatch();
@@ -48,19 +46,11 @@ const Main = () => {
   return (
     <main>
       <div className={MainStyles.container}>
-       
           <div>
-            {status === "pending"
-            ?            <Skeleton count={1} type="banner" />
-            :            <NewsBanner newsItem={news[0]} />
-            }
-            <SearchForm currentPage={currentPage}/>
+           <NewsBanner newsItem={news[0]}/>
+            <SearchForm currentPage={currentPage} setCurrentPage={setCurrentPage}/>
             <Pagination currentPage={currentPage} choosePage={choosePage} />
-
-              {status === "pending"
-            ?<Skeleton count={4} type="item" />
-            :<NewsList news={news.slice(1)} />
-          }
+            <NewsList news={news.slice(1)} />
             <Pagination currentPage={currentPage} choosePage={choosePage} />
           </div>
       
