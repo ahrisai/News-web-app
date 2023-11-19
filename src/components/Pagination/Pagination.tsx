@@ -13,6 +13,7 @@ interface PaginationProps {
 const Pagination: FC<PaginationProps> = ({currentPage,choosePage }) => {
  
   const status=useSelector((state:RootState)=>state.newsReducer.newsStatus)
+  const news=useSelector((state:RootState)=>state.newsReducer.news)
 
   useEffect(() => {
     if(currentPage===pages[pages.length-1]){
@@ -26,6 +27,16 @@ const Pagination: FC<PaginationProps> = ({currentPage,choosePage }) => {
     }
   }, [currentPage])
   
+
+  const isDisabled=(pageNumber:number) => {
+    
+
+    if(status==='pending'||pageNumber===currentPage) return true
+
+    if(news.length<10&&pageNumber>currentPage) return true
+
+    return false
+  }
 
   return (
     <div className={paginationStyles.pagesList}>
@@ -44,7 +55,7 @@ const Pagination: FC<PaginationProps> = ({currentPage,choosePage }) => {
               ? [paginationStyles.pageButton, paginationStyles.active].join(" ")
               : paginationStyles.pageButton
           }
-          key={pageNumber} disabled={pageNumber=== currentPage||status==='pending'}
+          key={pageNumber} disabled={isDisabled(pageNumber)}
         >
           {pageNumber}
         </button>

@@ -1,5 +1,4 @@
 .image{
-   
    display: block;
      max-width: 300px;   
      max-height: 150px;  
@@ -10,8 +9,9 @@
 }
 
 .wrapper{
-   width: 300px;
-   height: 150px;
+   
+    width: clamp(100px, 20vw, 400px);
+    height: 150px;
    background-image: url('../../img/pngwing.com.png');
    background-size: 90px;
    background-repeat: no-repeat;

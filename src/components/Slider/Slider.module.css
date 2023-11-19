@@ -1,0 +1,43 @@
+.Slider{
+    
+    margin: 50px auto;
+    width: 95%;
+    position: relative;
+}
+
+.Slider::after{
+    display: block;
+    content: '';
+    height: 2px;
+    width: 100%;
+    margin: 20px 0;
+    background: linear-gradient(68.7deg, rgb(29, 173, 235) 13.2%, rgb(137, 149, 250) 29.8%, rgb(229, 109, 212) 48.9%, rgb(255, 68, 128) 68.2%, rgb(255, 94, 0) 86.4%);
+}
+
+.nextArrow,
+.prevArrow
+{
+    position: absolute;
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-top: 3px solid #333;
+    border-right: 3px solid #333;
+    border-radius: 3px;
+    cursor: pointer;
+    top: 50%;
+    z-index: 1;
+    
+}
+
+.nextArrow{
+    right:0;
+    transform: rotate(45deg);
+}
+
+.prevArrow{
+    left:0;
+    transform: rotate(-135deg);
+
+}
+

@@ -1,5 +1,4 @@
 import MainStyles from "./Main.module.css";
-import NewsBanner from "../../components/NewsBanner/NewsBanner";
 import { useEffect, useState } from "react";
 import { useAppDispatch } from "../../redux";
 import { useSelector } from "react-redux";
@@ -8,6 +7,9 @@ import { fetchCategories} from "../../redux/newsSlice";
 import NewsList from "../../components/NewsBannersList/NewsList";
 import Pagination from "../../components/Pagination/Pagination";
 import SearchForm from "../../components/SearchForm/SearchForm";
+import SliderBanner from "../../components/Slider/Slider";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 
 const Main = () => {
   const news = useSelector((state: RootState) => state.newsReducer.news);
@@ -46,11 +48,13 @@ const Main = () => {
   return (
     <main>
       <div className={MainStyles.container}>
+      <SliderBanner/>
+
           <div>
-           <NewsBanner newsItem={news[0]}/>
+            
             <SearchForm currentPage={currentPage} setCurrentPage={setCurrentPage}/>
             <Pagination currentPage={currentPage} choosePage={choosePage} />
-            <NewsList news={news.slice(1)} />
+            <NewsList news={news} />
             <Pagination currentPage={currentPage} choosePage={choosePage} />
           </div>
       

@@ -7,16 +7,17 @@ import Skeleton from '../Skeleton/Skeleton'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../redux'
 interface NewsBannerProps{
-    newsItem:INewsItem
+    newsItem:INewsItem,
+    isCurrentSlide:boolean
 }
-const NewsBanner:FC<NewsBannerProps> = ({newsItem}) => {
+const NewsBanner:FC<NewsBannerProps> = ({newsItem,isCurrentSlide}) => {
   const status =useSelector((state:RootState)=>state.newsReducer.newsStatus)
   return (
     status==='pending'
     ?<Skeleton count={1} type={'banner'}/>
     :
     newsItem
-      ?<div className={NewsBannerStyles.newsBanner}>
+      ?<div className={isCurrentSlide? [NewsBannerStyles.newsBanner,NewsBannerStyles.active].join(' '):NewsBannerStyles.newsBanner}>
       <ImageWrapper imgStyles={NewsBannerStyles.bannerImage}  image={newsItem.image}/>
       <h3 className={NewsBannerStyles.title}>{newsItem.title}</h3>
       <p className={NewsBannerStyles.date}>

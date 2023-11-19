@@ -25,20 +25,22 @@ export const fetchNews = createAsyncThunk(
                 apiKey:apiKey,
                 page_size:pageParams.page_size,
                 page_number:pageParams.page_number,
-                // category:pageParams?.categories?.join(','),
+                category:pageParams?.categories?.join(','),
                 keywords:pageParams?.keywords,
                 domain_not:'arxiv.org'
             },
            
             
         })
-        .then(res=>res.data.news
+        .then(res=>{
+            console.log(res)
+            return res.data.news}
             
         )
         .catch(e=>{
            return  rejectWithValue(e.message)
         })
-        
+        console.log(response)
         return response
     }
 )
