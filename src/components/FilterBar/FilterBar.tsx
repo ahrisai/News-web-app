@@ -1,9 +1,11 @@
 import filterBarStyles from "./FilterBar.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
+import { useAppDispatch } from "../../redux";
 import { RootState } from "../../redux";
 import { Select, MenuItem, InputLabel, FormControl } from "@mui/material";
-import { addCategory } from "../../redux/newsSlice";
+import { addCategory, fetchCategories } from "../../redux/newsSlice";
 import SelectedCategoriesList from "../SelectedCategoriesList/SelectedCategoriesList";
+import { useEffect } from "react";
 const FilterBar = () => {
   const categories = useSelector(
     (state: RootState) => state.newsReducer.categories
@@ -13,7 +15,13 @@ const FilterBar = () => {
   );
 
   const status = useSelector((state:RootState)=>state.newsReducer.newsStatus)
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+  
+
+ 
+  useEffect(() => {
+    dispatch(fetchCategories());
+}, [])
 
   return (
     <div className={filterBarStyles.FilterBar}>
