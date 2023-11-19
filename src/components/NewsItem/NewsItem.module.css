@@ -21,13 +21,7 @@ transform: scale(1.05);
     
 }
 
-.newsItemImg{
-    display: block;
-     max-width: 300px;   
-     max-height: 150px;  
-    border-radius: 10px;
-     
-}
+
 
 .itemBorder{
     overflow: hidden;
