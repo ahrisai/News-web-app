@@ -45,6 +45,25 @@ export const fetchNews = createAsyncThunk(
     }
 )
 
+export const fetchLatestNews=createAsyncThunk(
+    'newsReducer/fetchLatestNews',
+    async (_,{rejectWithValue}) => {
+        const response = await axios.get<FetchedNews>(`${BASE_URL}latest-news`,{
+            params:{
+                apiKey:apiKey,
+                domain_not:'arxiv.org',
+                page_size:10
+
+            }
+        })
+        .then(res=>res.data.news)
+        .catch(error=>{
+            return rejectWithValue(error.message)
+        })
+        return response
+    }
+)
+
 export const fetchCategories = createAsyncThunk(
     'newsReducer/fetchCategories',
     async (_,{rejectWithValue}) => {
@@ -73,22 +92,28 @@ export const fetchCategories = createAsyncThunk(
 )
 
 interface INewsState{
+    
     news:INewsItem[],
+    latestNews:INewsItem[],
     categories:string[],
+    
     currentCategories:string[],
     newsStatus:'pending'|'rejected'|'fulfilled'|'idle',
+    latestNewsStatus:'pending'|'rejected'|'fulfilled'|'idle',
     categoriesStatus:'pending'|'rejected'|'fulfilled'|'idle',
     error:string|null
 }
 
-const initialState={
+const initialState:INewsState={
     news:[],
+    latestNews:[],
     categories:[],
     currentCategories:['All'],
     newsStatus:'idle',
     categoriesStatus:'idle',
+    latestNewsStatus:'idle',
     error:null
-} as INewsState
+} 
 
 export interface ActionCategory{
     categories:string[],
@@ -131,6 +156,17 @@ const NewsSlice=createSlice({
         },
         [fetchNews.rejected.type]:(state,action:PayloadAction<string>)=>{
             state.newsStatus='rejected'
+            state.error=action.payload
+        },
+        [fetchLatestNews.pending.type]:(state)=>{
+            state.latestNewsStatus='pending'
+        },
+        [fetchLatestNews.fulfilled.type]:(state,action:PayloadAction<INewsItem[]>)=>{
+            state.latestNewsStatus='fulfilled'
+            state.latestNews=action.payload
+        },
+        [fetchLatestNews.rejected.type]:(state,action:PayloadAction<string>)=>{
+            state.latestNewsStatus='rejected'
             state.error=action.payload
         },
         [fetchCategories.pending.type]:(state)=>{

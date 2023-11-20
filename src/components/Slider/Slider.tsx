@@ -1,9 +1,10 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import sliderStyles from './Slider.module.css'
 import Slider from 'react-slick'
 import { useSelector } from 'react-redux';
-import { RootState } from '../../redux';
+import { RootState, useAppDispatch } from '../../redux';
 import NewsBanner from '../NewsBanner/NewsBanner';
+import { fetchLatestNews } from '../../redux/newsSlice';
 
 interface ArrowsProps{
     className?:string,
@@ -38,8 +39,17 @@ function SampleNextArrow(props:ArrowsProps) {
 
 const SliderBanner = () => {
 
-  const news= useSelector((state:RootState)=>state.newsReducer.news)
-const [currentSlide, setCurrentSlide] = useState<number>(0)
+  const latestNews= useSelector((state:RootState)=>state.newsReducer.latestNews)
+  const status= useSelector((state:RootState)=>state.newsReducer.latestNewsStatus)
+  const dispatch=useAppDispatch()
+  const [currentSlide, setCurrentSlide] = useState<number>(0)
+console.log(status)
+  useEffect(() => {
+
+    dispatch(fetchLatestNews())
+  
+  }, [])
+  
 
     const settings = {
       
@@ -62,8 +72,8 @@ const [currentSlide, setCurrentSlide] = useState<number>(0)
         {
           breakpoint: 1024,
           settings: {
-            slidesToShow: 1,
-            slidesToScroll: 7,
+            slidesToShow: 3,
+            slidesToScroll: 1,
             infinite: true,
             dots: true
           }
@@ -72,8 +82,8 @@ const [currentSlide, setCurrentSlide] = useState<number>(0)
           breakpoint: 700,
           settings: {
             slidesToShow: 1,
-            slidesToScroll: 2,
-            initialSlide: 2
+            slidesToScroll: 1,
+            initialSlide: 0
           }
         },
         {
@@ -87,9 +97,16 @@ const [currentSlide, setCurrentSlide] = useState<number>(0)
 
       };
   return (
-      
+      status==='pending'
+      ?<Slider {...settings} className={sliderStyles.Slider}>
+        <NewsBanner></NewsBanner>
+        <NewsBanner></NewsBanner>
+        <NewsBanner></NewsBanner>
+      </Slider>
+
+      :
         <Slider {...settings} className={sliderStyles.Slider}>
-          {news.map((item,index)=><NewsBanner key={item.id} isCurrentSlide={index===currentSlide} newsItem={item}/>)
+          {latestNews.map((item,index)=><NewsBanner key={item.id} isCurrentSlide={index===currentSlide} newsItem={item}/>)
           }
         </Slider>
 

@@ -22,7 +22,8 @@ const queryParams={
     page_size:10,
     categories:currentCategories,
     page_number:currentPage,
-    keywords:keywords
+    keywords:keywords,
+    path:'search'
     } as IPageQueryParams
 
     const makeSearch = (e:React.FormEvent<HTMLFormElement>) => {
