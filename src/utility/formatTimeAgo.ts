@@ -1,4 +1,7 @@
-export const formatTimeAgo = (dateString:string) => {
+export const formatTimeAgo = (dateString:string|undefined) => {
+    if(!dateString){
+        return
+    }
     const now=new Date()
     const date=new Date(dateString)
     

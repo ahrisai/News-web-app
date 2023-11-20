@@ -10,7 +10,7 @@
 
 .wrapper{
    
-    width: clamp(100px, 20vw, 400px);
+    width: clamp(200px, 20vw, 400px);
     height: 150px;
    background-image: url('../../img/pngwing.com.png');
    background-size: 90px;

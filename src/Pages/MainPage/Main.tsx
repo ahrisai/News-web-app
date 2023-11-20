@@ -37,8 +37,9 @@ const Main = () => {
 
   return (
     <main>
+
       <div className={MainStyles.container}>
-            <SliderBanner/>
+      <SliderBanner/>
             <SearchForm currentPage={currentPage} setCurrentPage={setCurrentPage}/>
             <Pagination currentPage={currentPage} choosePage={choosePage} />
             <NewsList />

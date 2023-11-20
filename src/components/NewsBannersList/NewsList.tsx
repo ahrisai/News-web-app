@@ -1,6 +1,5 @@
 import {FC} from 'react'
 import ListStyles from './NewsBannersList.module.css'
-import { INewsItem } from '../../types/NewsTypes'
 import NewsItem from '../NewsItem/NewsItem'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../redux'

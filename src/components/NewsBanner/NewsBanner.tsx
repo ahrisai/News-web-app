@@ -6,18 +6,21 @@ import ImageWrapper from '../ImageWrapper/ImageWrapper'
 import Skeleton from '../Skeleton/Skeleton'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../redux'
+import {useNavigate} from 'react-router-dom'
 interface NewsBannerProps{
-    newsItem:INewsItem,
-    isCurrentSlide:boolean
+    newsItem?:INewsItem,
+    isCurrentSlide?:boolean
+    
 }
 const NewsBanner:FC<NewsBannerProps> = ({newsItem,isCurrentSlide}) => {
   const status =useSelector((state:RootState)=>state.newsReducer.newsStatus)
+  const navigate=useNavigate()
   return (
     status==='pending'
     ?<Skeleton count={1} type={'banner'}/>
     :
     newsItem
-      ?<div className={isCurrentSlide? [NewsBannerStyles.newsBanner,NewsBannerStyles.active].join(' '):NewsBannerStyles.newsBanner}>
+      ?<div className={isCurrentSlide? [NewsBannerStyles.newsBanner,NewsBannerStyles.active].join(' '):NewsBannerStyles.newsBanner} onClick={()=>{navigate(`/news/${newsItem.id}/l`)}}>
       <ImageWrapper imgStyles={NewsBannerStyles.bannerImage}  image={newsItem.image}/>
       <h3 className={NewsBannerStyles.title}>{newsItem.title}</h3>
       <p className={NewsBannerStyles.date}>
